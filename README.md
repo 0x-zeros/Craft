@@ -1,36 +1,35 @@
 ## Craft
 
-Minecraft clone for Windows, Mac OS X and Linux. Just a few thousand lines of C using modern OpenGL (shaders). Online multiplayer support is included using a Python-based server.
+适用于Windows、Mac OS X和Linux的Minecraft克隆版。仅使用几千行C代码，采用现代OpenGL（着色器）实现。包含基于Python服务器的在线多人游戏支持。
 
 http://www.michaelfogleman.com/craft/
 
-![Screenshot](https://i.imgur.com/SH7wcas.png)
+![截图](https://i.imgur.com/SH7wcas.png)
 
-### Features
+### 特性
 
-* Simple but nice looking terrain generation using perlin / simplex noise.
-* More than 10 types of blocks and more can be added easily.
-* Supports plants (grass, flowers, trees, etc.) and transparency (glass).
-* Simple clouds in the sky (they don't move).
-* Day / night cycles and a textured sky dome.
-* World changes persisted in a sqlite3 database.
-* Multiplayer support!
+* 使用柏林/辛普森噪声生成简单但美观的地形。
+* 超过10种方块类型，可以轻松添加更多。
+* 支持植物（草、花、树等）和透明效果（玻璃）。
+* 天空中的简单云朵（不会移动）。
+* 昼夜循环和带纹理的天空穹顶。
+* 世界变化持久化存储在sqlite3数据库中。
+* 多人游戏支持！
 
-### Download
+### 下载
 
-Mac and Windows binaries are available on the website.
+Mac和Windows二进制文件可在网站上获取。
 
 http://www.michaelfogleman.com/craft/
 
-See below to run from source.
+从源码运行请参见下文。
 
-### Install Dependencies
+### 安装依赖
 
 #### Mac OS X
 
-Download and install [CMake](http://www.cmake.org/cmake/resources/software.html)
-if you don't already have it. You may use [Homebrew](http://brew.sh) to simplify
-the installation:
+如果还没有安装[CMake](http://www.cmake.org/cmake/resources/software.html)，请下载并安装。
+您可以使用[Homebrew](http://brew.sh)简化安装过程：
 
     brew install cmake
 
@@ -41,21 +40,20 @@ the installation:
 
 #### Windows
 
-Download and install [CMake](http://www.cmake.org/cmake/resources/software.html)
-and [MinGW](http://www.mingw.org/). Add `C:\MinGW\bin` to your `PATH`.
+下载并安装[CMake](http://www.cmake.org/cmake/resources/software.html)
+和[MinGW](http://www.mingw.org/)。将`C:\MinGW\bin`添加到您的`PATH`环境变量中。
 
-Download and install [cURL](http://curl.haxx.se/download.html) so that
-CURL/lib and CURL/include are in your Program Files directory.
+下载并安装[cURL](http://curl.haxx.se/download.html)，确保
+CURL/lib和CURL/include位于Program Files目录中。
 
-Use the following commands in place of the ones described in the next section.
+使用以下命令替代下一节中描述的命令。
 
     cmake -G "MinGW Makefiles"
     mingw32-make
 
-### Compile and Run
+### 编译和运行
 
-Once you have the dependencies (see above), run the following commands in your
-terminal.
+一旦您有了依赖项（见上文），在终端中运行以下命令。
 
     git clone https://github.com/fogleman/Craft.git
     cd Craft
@@ -63,157 +61,156 @@ terminal.
     make
     ./craft
 
-### Multiplayer
+### 多人游戏
 
-After many years, craft.michaelfogleman.com has been taken down. See the [Server](#server) section for info on self-hosting.
+经过多年，craft.michaelfogleman.com已经下线。有关自托管的信息，请参见[服务器](#服务器)部分。
 
-#### Client
+#### 客户端
 
-You can connect to a server with command line arguments...
+您可以使用命令行参数连接到服务器...
 
 ```bash
-./craft [HOST [PORT]]
+./craft [主机 [端口]]
 ```
 
-Or, with the "/online" command in the game itself.
+或者，在游戏中使用"/online"命令。
     
-    /online [HOST [PORT]]
+    /online [主机 [端口]]
 
-#### Server
+#### 服务器
 
-You can run your own server or connect to mine. The server is written in Python
-but requires a compiled DLL so it can perform the terrain generation just like
-the client.
+您可以运行自己的服务器或连接到我的服务器。服务器用Python编写，
+但需要编译的DLL，以便像客户端一样执行地形生成。
 
 ```bash
 gcc -std=c99 -O3 -fPIC -shared -o world -I src -I deps/noise deps/noise/noise.c src/world.c
-python server.py [HOST [PORT]]
+python server.py [主机 [端口]]
 ```
 
-### Controls
+### 控制
 
-- WASD to move forward, left, backward, right.
-- Space to jump.
-- Left Click to destroy a block.
-- Right Click or Cmd + Left Click to create a block.
-- Ctrl + Right Click to toggle a block as a light source.
-- 1-9 to select the block type to create.
-- E to cycle through the block types.
-- Tab to toggle between walking and flying.
-- ZXCVBN to move in exact directions along the XYZ axes.
-- Left shift to zoom.
-- F to show the scene in orthographic mode.
-- O to observe players in the main view.
-- P to observe players in the picture-in-picture view.
-- T to type text into chat.
-- Forward slash (/) to enter a command.
-- Backquote (`) to write text on any block (signs).
-- Arrow keys emulate mouse movement.
-- Enter emulates mouse click.
+- WASD键向前、左、后、右移动。
+- 空格键跳跃。
+- 左键点击破坏方块。
+- 右键点击或Cmd + 左键点击创建方块。
+- Ctrl + 右键点击切换方块为光源。
+- 1-9键选择要创建的方块类型。
+- E键循环切换方块类型。
+- Tab键在行走和飞行模式之间切换。
+- ZXCVBN键沿XYZ轴精确方向移动。
+- 左Shift键缩放。
+- F键以正交模式显示场景。
+- O键在主视图中观察玩家。
+- P键在画中画视图中观察玩家。
+- T键在聊天中输入文本。
+- 正斜杠(/)进入命令模式。
+- 反引号(`)在任何方块上写文本（告示牌）。
+- 方向键模拟鼠标移动。
+- Enter键模拟鼠标点击。
 
-### Chat Commands
+### 聊天命令
 
-    /goto [NAME]
+    /goto [名称]
 
-Teleport to another user.
-If NAME is unspecified, a random user is chosen.
+传送到另一个用户。
+如果未指定名称，则随机选择一个用户。
 
     /list
 
-Display a list of connected users.
+显示已连接用户的列表。
 
-    /login NAME
+    /login 名称
 
-Switch to another registered username.
-The login server will be re-contacted. The username is case-sensitive.
+切换到另一个已注册的用户名。
+将重新联系登录服务器。用户名区分大小写。
 
     /logout
 
-Unauthenticate and become a guest user.
-Automatic logins will not occur again until the /login command is re-issued.
+取消身份验证并成为访客用户。
+在重新发出/login命令之前，不会再次自动登录。
 
-    /offline [FILE]
+    /offline [文件]
 
-Switch to offline mode.
-FILE specifies the save file to use and defaults to "craft".
+切换到离线模式。
+文件指定要使用的保存文件，默认为"craft"。
 
-    /online HOST [PORT]
+    /online 主机 [端口]
 
-Connect to the specified server.
+连接到指定的服务器。
 
     /pq P Q
 
-Teleport to the specified chunk.
+传送到指定的区块。
 
     /spawn
 
-Teleport back to the spawn point.
+传送回出生点。
 
-### Screenshot
+### 截图
 
-![Screenshot](https://i.imgur.com/foYz3aN.png)
+![截图](https://i.imgur.com/foYz3aN.png)
 
-### Implementation Details
+### 实现细节
 
-#### Terrain Generation
+#### 地形生成
 
-The terrain is generated using Simplex noise - a deterministic noise function seeded based on position. So the world will always be generated the same way in a given location.
+地形使用辛普森噪声生成 - 基于位置种子的确定性噪声函数。因此，在给定位置的世界总是以相同的方式生成。
 
-The world is split up into 32x32 block chunks in the XZ plane (Y is up). This allows the world to be “infinite” (floating point precision is currently a problem at large X or Z values) and also makes it easier to manage the data. Only visible chunks need to be queried from the database.
+世界在XZ平面（Y向上）上分为32x32方块的区块。这允许世界"无限"（目前在大X或Z值处浮点精度是个问题），也使数据管理更容易。只有可见的区块需要从数据库查询。
 
-#### Rendering
+#### 渲染
 
-Only exposed faces are rendered. This is an important optimization as the vast majority of blocks are either completely hidden or are only exposing one or two faces. Each chunk records a one-block width overlap for each neighboring chunk so it knows which blocks along its perimeter are exposed.
+只渲染暴露的面。这是一个重要的优化，因为绝大多数方块要么完全隐藏，要么只暴露一两个面。每个区块为每个相邻区块记录一个方块宽度的重叠，以便知道其周边哪些方块是暴露的。
 
-Only visible chunks are rendered. A naive frustum-culling approach is used to test if a chunk is in the camera’s view. If it is not, it is not rendered. This results in a pretty decent performance improvement as well.
+只渲染可见的区块。使用简单的视锥剔除方法来测试区块是否在相机的视野中。如果不在，则不渲染。这也带来了相当不错的性能提升。
 
-Chunk buffers are completely regenerated when a block is changed in that chunk, instead of trying to update the VBO.
+当区块中的方块发生变化时，完全重新生成区块缓冲区，而不是尝试更新VBO。
 
-Text is rendered using a bitmap atlas. Each character is rendered onto two triangles forming a 2D rectangle.
+文本使用位图图集渲染。每个字符渲染到形成2D矩形的两个三角形上。
 
-“Modern” OpenGL is used - no deprecated, fixed-function pipeline functions are used. Vertex buffer objects are used for position, normal and texture coordinates. Vertex and fragment shaders are used for rendering. Matrix manipulation functions are in matrix.c for translation, rotation, perspective, orthographic, etc. matrices. The 3D models are made up of very simple primitives - mostly cubes and rectangles. These models are generated in code in cube.c.
+使用"现代"OpenGL - 不使用已弃用的固定功能管线函数。顶点缓冲区对象用于位置、法线和纹理坐标。顶点和片段着色器用于渲染。矩阵操作函数在matrix.c中用于平移、旋转、透视、正交等矩阵。3D模型由非常简单的图元组成 - 主要是立方体和矩形。这些模型在cube.c中的代码中生成。
 
-Transparency in glass blocks and plants (plants don’t take up the full rectangular shape of their triangle primitives) is implemented by discarding magenta-colored pixels in the fragment shader.
+玻璃方块和植物中的透明度（植物不占用其三角形图元的完整矩形形状）通过在片段着色器中丢弃洋红色像素来实现。
 
-#### Database
+#### 数据库
 
-User changes to the world are stored in a sqlite database. Only the delta is stored, so the default world is generated and then the user changes are applied on top when loading.
+用户对世界的更改存储在sqlite数据库中。只存储增量，所以默认世界是生成的，然后在加载时在顶部应用用户更改。
 
-The main database table is named “block” and has columns p, q, x, y, z, w. (p, q) identifies the chunk, (x, y, z) identifies the block position and (w) identifies the block type. 0 represents an empty block (air).
+主数据库表名为"block"，列名为p, q, x, y, z, w。(p, q)标识区块，(x, y, z)标识方块位置，(w)标识方块类型。0表示空方块（空气）。
 
-In game, the chunks store their blocks in a hash map. An (x, y, z) key maps to a (w) value.
+在游戏中，区块将其方块存储在哈希映射中。(x, y, z)键映射到(w)值。
 
-The y-position of blocks are limited to 0 <= y < 256. The upper limit is mainly an artificial limitation to prevent users from building unnecessarily tall structures. Users are not allowed to destroy blocks at y = 0 to avoid falling underneath the world.
+方块的y位置限制为0 <= y < 256。上限主要是人为限制，以防止用户建造不必要的高结构。不允许用户破坏y = 0处的方块，以避免掉到世界下方。
 
-#### Multiplayer
+#### 多人游戏
 
-Multiplayer mode is implemented using plain-old sockets. A simple, ASCII, line-based protocol is used. Each line is made up of a command code and zero or more comma-separated arguments. The client requests chunks from the server with a simple command: C,p,q,key. “C” means “Chunk” and (p, q) identifies the chunk. The key is used for caching - the server will only send block updates that have been performed since the client last asked for that chunk. Block updates (in realtime or as part of a chunk request) are sent to the client in the format: B,p,q,x,y,z,w. After sending all of the blocks for a requested chunk, the server will send an updated cache key in the format: K,p,q,key. The client will store this key and use it the next time it needs to ask for that chunk. Player positions are sent in the format: P,pid,x,y,z,rx,ry. The pid is the player ID and the rx and ry values indicate the player’s rotation in two different axes. The client interpolates player positions from the past two position updates for smoother animation. The client sends its position to the server at most every 0.1 seconds (less if not moving).
+多人游戏模式使用普通套接字实现。使用简单的ASCII行协议。每行由命令代码和零个或多个逗号分隔的参数组成。客户端使用简单命令向服务器请求区块：C,p,q,key。"C"表示"Chunk"，(p, q)标识区块。key用于缓存 - 服务器只发送自客户端上次询问该区块以来执行的方块更新。方块更新（实时或作为区块请求的一部分）以格式发送给客户端：B,p,q,x,y,z,w。发送完请求区块的所有方块后，服务器将以格式发送更新的缓存键：K,p,q,key。客户端将存储此键并在下次需要询问该区块时使用它。玩家位置以格式发送：P,pid,x,y,z,rx,ry。pid是玩家ID，rx和ry值表示玩家在两个不同轴上的旋转。客户端从过去两个位置更新插值玩家位置，以实现更平滑的动画。客户端最多每0.1秒向服务器发送一次位置（如果不移动则更少）。
 
-Client-side caching to the sqlite database can be performance intensive when connecting to a server for the first time. For this reason, sqlite writes are performed on a background thread. All writes occur in a transaction for performance. The transaction is committed every 5 seconds as opposed to some logical amount of work completed. A ring / circular buffer is used as a queue for what data is to be written to the database.
+连接到服务器时的客户端缓存到sqlite数据库可能性能密集。因此，sqlite写入在后台线程上执行。所有写入都在事务中进行以提高性能。事务每5秒提交一次，而不是基于完成的逻辑工作量。使用环形/循环缓冲区作为要写入数据库的数据队列。
 
-In multiplayer mode, players can observe one another in the main view or in a picture-in-picture view. Implementation of the PnP was surprisingly simple - just change the viewport and render the scene again from the other player’s point of view.
+在多人游戏模式中，玩家可以在主视图或画中画视图中观察彼此。PnP的实现出奇地简单 - 只需更改视口并从其他玩家的角度再次渲染场景。
 
-#### Collision Testing
+#### 碰撞测试
 
-Hit testing (what block the user is pointing at) is implemented by scanning a ray from the player’s position outward, following their sight vector. This is not a precise method, so the step rate can be made smaller to be more accurate.
+命中测试（用户指向的方块）通过从玩家位置向外扫描射线来实现，跟随他们的视线向量。这不是精确的方法，所以步长可以做得更小以提高准确性。
 
-Collision testing simply adjusts the player’s position to remain a certain distance away from any adjacent blocks that are obstacles. (Clouds and plants are not marked as obstacles, so you pass right through them.)
+碰撞测试简单地调整玩家位置，使其与任何相邻的障碍方块保持一定距离。（云和植物不标记为障碍物，所以您可以直接穿过它们。）
 
-#### Sky Dome
+#### 天空穹顶
 
-A textured sky dome is used for the sky. The X-coordinate of the texture represents time of day. The Y-values map from the bottom of the sky sphere to the top of the sky sphere. The player is always in the center of the sphere. The fragment shaders for the blocks also sample the sky texture to determine the appropriate fog color to blend with based on the block’s position relative to the backing sky.
+使用带纹理的天空穹顶作为天空。纹理的X坐标表示一天中的时间。Y值从天空球体的底部映射到顶部。玩家始终在球体的中心。方块的片段着色器也采样天空纹理，根据方块相对于背景天空的位置确定适当的雾色进行混合。
 
-#### Ambient Occlusion
+#### 环境光遮蔽
 
-Ambient occlusion is implemented as described on this page:
+环境光遮蔽按照此页面的描述实现：
 
 http://0fps.wordpress.com/2013/07/03/ambient-occlusion-for-minecraft-like-worlds/
 
-#### Dependencies
+#### 依赖项
 
-* GLEW is used for managing OpenGL extensions across platforms.
-* GLFW is used for cross-platform window management.
-* CURL is used for HTTPS / SSL POST for the authentication process.
-* lodepng is used for loading PNG textures.
-* sqlite3 is used for saving the blocks added / removed by the user.
-* tinycthread is used for cross-platform threading.
+* GLEW用于跨平台管理OpenGL扩展。
+* GLFW用于跨平台窗口管理。
+* CURL用于身份验证过程的HTTPS/SSL POST。
+* lodepng用于加载PNG纹理。
+* sqlite3用于保存用户添加/删除的方块。
+* tinycthread用于跨平台线程。
